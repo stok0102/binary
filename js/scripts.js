@@ -1,26 +1,20 @@
-var decimalToBinary = function(dec){
-  var binaryArray = [0,0,0,0,0,0,0,0]
-  for (i = 0 ; i < dec ; i++) {
-    var firstZero;
-
-    for (var binaryIndex = 0 ; binaryIndex <= 7 ;binaryIndex++) {
-      if (binaryArray[binaryIndex]===0) firstZero = binaryIndex;
-    }
-
-    for (var binaryIndex = firstZero ; binaryIndex <= 7; binaryIndex++)
-      binaryArray[binaryIndex] = flip(binaryArray[binaryIndex]);
+var decToOtherCase = function(dec, caseInput){
+  // debugger;
+  var caseArray = [];
+  var resultArray=[0,0,0,0,0,0,0,0,0,0];
+  for (var i = 9 ; i >= 0 ; i--) {
+    caseArray.push(Math.pow(caseInput,i));
   }
-
-  var resultString="";
-  binaryArray.forEach(function(num){
-    resultString+=num;
-  })
-  return resultString;
-}
-
-var flip = function(digit) {
-  if (digit===0) return 1;
-  if (digit===1) return 0;
+  console.log(caseArray);
+  for (var index = 0 ; index < 10 ; index++) {
+    while (dec >= caseArray[index]) {
+      // debugger;
+      dec -= caseArray[index];
+      resultArray[index]++;
+    }
+  }
+  console.log(resultArray);
+  console.log(dec);
 }
 
 
@@ -29,7 +23,10 @@ $(document).ready(function(){
   $("#binaryForm").submit(function(event){
     event.preventDefault();
     var value = parseInt($("#input").val());
-    $("#result").append("<p>"+decimalToBinary(value)+"</p>");
+    var caseInput = parseInt($("#caseInput").val());
+    $("#result").append("<p>"+decToOtherCase(value,caseInput)+"</p>");
   });
+
+  decToOtherCase(1352,9);
 
 });
