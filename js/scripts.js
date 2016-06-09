@@ -1,5 +1,6 @@
 var decToOtherCase = function(dec, caseInput){
   // debugger;
+  var charKey = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"]
   var caseArray = [];
   var resultArray=[0,0,0,0,0,0,0,0,0,0];
   for (var i = 9 ; i >= 0 ; i--) {
@@ -13,8 +14,13 @@ var decToOtherCase = function(dec, caseInput){
       resultArray[index]++;
     }
   }
+  var resultString = ""
+  for (var i = 0; i < resultArray.length; i++) {
+    resultString+=charKey[resultArray[i]];
+  }
   console.log(resultArray);
   console.log(dec);
+  console.log(resultString);
 }
 
 
@@ -27,6 +33,6 @@ $(document).ready(function(){
     $("#result").append("<p>"+decToOtherCase(value,caseInput)+"</p>");
   });
 
-  decToOtherCase(1352,9);
+  decToOtherCase(987987908273,16);
 
 });
